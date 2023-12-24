@@ -112,13 +112,13 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
     setTimeout(() => {
       $('#createSanPhamModal').modal('toggle');
       this._api.get('/api/sanpham/get-by-id/' + maSanPham).subscribe(res => {
-        this.sanpham = res.product;
+        this.sanpham = res[0];
         this.frmSanPham = new FormGroup({
-          'txt_tensp': new FormControl(this.sanpham.tenSP, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]),
+          'txt_tensp': new FormControl(this.sanpham.TenSP, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]),
           'txt_loai': new FormControl(this.sanpham.maLoai, [Validators.required]),
           'txt_ncc': new FormControl(this.sanpham.maNCC, [Validators.required]),
-          'txt_mota': new FormControl(this.sanpham.moTa, [Validators.required]),
-          'txt_dongia': new FormControl(this.sanpham.donGia, [Validators.required]),
+          'txt_mota': new FormControl(this.sanpham.MoTa, [Validators.required]),
+          'txt_dongia': new FormControl(this.sanpham.DonGia, [Validators.required]),
           'txt_anh': new FormControl(this.sanpham.anh, []),
         });
         this.doneSetupForm = true;
@@ -138,16 +138,22 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
     setTimeout(() => {
       $('#createSanPhamModal').modal('toggle');
       this._api.get('/api/sanpham/get-by-id/' + maSanPham).subscribe(res => {
-        this.sanpham = res.sanpham;
+        this.sanpham = res[0];
         this.frmSanPham = new FormGroup({
-          'txt_tensp': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(250)]),
-          'txt_loai': new FormControl('', [Validators.required]),
-          'txt_ncc': new FormControl('', [Validators.required]),
-          'txt_mota': new FormControl('', [Validators.required]),
-          'txt_gia': new FormControl('', [Validators.required]),
-          'txt_anh': new FormControl('', [Validators.required]),
+          'txt_tensp': new FormControl(this.sanpham.TenSP, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]),
+          'txt_loai': new FormControl(this.sanpham.maLoai, [Validators.required]),
+          'txt_ncc': new FormControl(this.sanpham.maNCC, [Validators.required]),
+          'txt_mota': new FormControl(this.sanpham.MoTa, [Validators.required]),
+          'txt_dongia': new FormControl(this.sanpham.DonGia, [Validators.required]),
+          'txt_anh': new FormControl(this.sanpham.Anh, [Validators.required]),
         });
         this.doneSetupForm = true;
+        this._api.get('/api/NhaCungCap/get-NhaCungCap').subscribe(res => {
+          this.list_nhacungcaps = res;
+        });
+        this._api.get('/api/LoaiSanPham/get-loaisanpham').subscribe(res => {
+          this.list_loaisanphams = res;
+        });
       });
     });
   }
@@ -217,7 +223,7 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
       MaLoaiSanPham: vl.txt_loai,
       MaNhaCungCap: vl.txt_ncc,
       MoTaSanPham: vl.txt_mota,
-      // DonGia: vl.txt_dongia,
+      DonGia: vl.txt_dongia,
       AnhDaiDien: vl.txt_anh,
     };
 
@@ -227,11 +233,13 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
 
 
     if (this.isCreate) {
-      if (this.file) {
+      if (this.file && false) {
         this._api.uploadFileSingle('/api/upload/upload-single', 'sanpham', this.file).subscribe((res: any) => {
           if (res && res.body && res.body.filePath) {
             obj.sanpham.AnhDaiDien = res.body.filePath;
             this._api.post('/api/sanpham/create-sanpham', obj).subscribe(res => {
+              console.log(res)
+              console.log(res.data)
               if (res.status == 200) {
                 alert('Thêm dữ liệu thành công');
                 this.LoadData();
@@ -244,7 +252,8 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
         });
       } else {
         this._api.post('/api/sanpham/create-sanpham', obj).subscribe(res => {
-          if (res && res.data) {
+          console.log(res)
+          if (res.insertId > 0) {
             alert('Thêm dữ liệu thành công');
             this.LoadData();
             this.closeModal();
@@ -257,7 +266,7 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
       obj.sanpham.MaSanPham = this.sanpham.maSanPham;
       obj.giasanpham.MaSanPham = this.sanpham.maSanPham;
 
-      if (this.file) {
+      if (this.file && false) {
         this._api.uploadFileSingle('/api/upload/upload-single', 'sanpham', this.file).subscribe((res: any) => {
           if (res && res.body && res.body.filePath) {
             obj.sanpham.AnhDaiDien = res.body.filePath;
