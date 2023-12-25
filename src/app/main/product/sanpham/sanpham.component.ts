@@ -263,8 +263,8 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
         });
       }
     } else {
-      obj.sanpham.MaSanPham = this.sanpham.maSanPham;
-      obj.giasanpham.MaSanPham = this.sanpham.maSanPham;
+      obj.sanpham.MaSanPham = this.sanpham.MaSanPham;
+      obj.giasanpham.MaSanPham = this.sanpham.MaSanPham;
 
       if (this.file && false) {
         this._api.uploadFileSingle('/api/upload/upload-single', 'sanpham', this.file).subscribe((res: any) => {
@@ -283,7 +283,7 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
         });
       } else {
         this._api.post('/api/sanpham/update-sanpham', obj).subscribe(res => {
-          if (res && res.data) {
+          if (res.affectedRows > 0) {
             alert('Cập nhật dữ liệu thành công');
             this.LoadData();
             this.closeModal();
