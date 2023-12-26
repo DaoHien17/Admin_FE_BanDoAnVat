@@ -75,7 +75,7 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
 
 
   get anh() {
-    return this.frmSanPham.get('txt_anh')!;
+    return this.frmSanPham.get('txt_anh')!.value;
   }
 
 
@@ -119,7 +119,7 @@ export class SanphamComponent extends BaseComponent implements OnInit, AfterView
           'txt_ncc': new FormControl(this.sanpham.maNCC, [Validators.required]),
           'txt_mota': new FormControl(this.sanpham.MoTa, [Validators.required]),
           'txt_dongia': new FormControl(this.sanpham.DonGia, [Validators.required]),
-          'txt_anh': new FormControl(this.sanpham.anh, []),
+          'txt_anh': new FormControl(this.sanpham.Anh, []),
         });
         this.doneSetupForm = true;
         this._api.get('/api/NhaCungCap/get-NhaCungCap').subscribe(res => {

@@ -162,28 +162,15 @@
 							</div>
 						</div>
 					</div>
-
-
-					<div class="form-group">
-						<label class="col-lg-3 control-label">Ảnh sản phẩm:</label>
+          <div class="form-group">
+						<label class="col-lg-3 control-label">Ảnh sản phẩm<span style="color:red ;">*</span></label>
 						<div class="col-lg-9">
-							<div class="media no-margin-top">
-								<div class="media-left">
-									<a href="#"><img
-											[src]="sanpham && sanpham.Anh?sanpham.Anh:'assets/images/placeholder.jpg'"
-											style="width: 58px; height: 58px;" class="img-rounded" alt=""></a>
-								</div>
-
-								<div class="media-body">
-									<input (change)="upload($event)" accept=".jpg,.png,.jpeg,.gif,.bmp,.tif,.tiff"
-										type="file" class="file-styled">
-									<span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
-								</div>
-							</div>
+							<input formControlName="txt_anh" type="text" class="form-control" placeholder="Ảnh sản phẩm">
 						</div>
 					</div>
-
-
+          <div class="col-lg-9" *ngIf = "anh">
+            <img width="300" src="{{ anh }}">
+          </div>
 				</div>
 				<hr>
 				<div class="modal-footer">

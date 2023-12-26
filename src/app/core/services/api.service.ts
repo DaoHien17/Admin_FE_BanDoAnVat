@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ApiService {
     public host = environment.BASE_API;
-    constructor(private _http: HttpClient, public router: Router) {
+        constructor(private _http: HttpClient, public router: Router) {
 
     }
     public post(url: string, obj: any) {
