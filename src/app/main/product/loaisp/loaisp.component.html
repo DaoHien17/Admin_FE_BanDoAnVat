@@ -1,0 +1,120 @@
+<!-- Page header -->
+<div class="page-header page-header-default">
+  <div class="page-header-content">
+    <div class="page-title">
+      <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Sản phẩm</span> - Quản lý
+        loại sản phẩm</h4>
+    </div>
+
+    <div class="heading-elements">
+      <div class="heading-btn-group">
+        <a (click)="createModal()" class="btn btn-link btn-float has-text"><i class="fa fa-plus" ></i><span>Thêm loại sản phẩm</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+  <div class="row" style="padding-bottom: 10px;">
+    <div class="col-md-12">
+
+      <!-- Basic layout-->
+      <form  class="form-horizontal" (ngSubmit)="LoadData()" [formGroup]="frmSearch" >
+        <div class="panel panel-flat">
+          <div class="panel-heading" style="display: flex;">
+            <h5 class="panel-title" style="padding-left: 15px;
+			padding-right: 15px; padding-top: 10px;">Tìm kiếm</h5>
+			<input formControlName="txt_tenlsp" type="text" class="form-control" placeholder="Search....">
+          </div>
+
+
+        </div>
+      </form>
+      <!-- /basic layout -->
+    </div>
+  </div>
+
+
+  <!-- Basic datatable -->
+  <div class="panel panel-flat">
+    <div class="panel-heading">
+
+    </div>
+
+    <table class="table datatable-basic">
+      <thead>
+        <tr>
+          <th>Mã Loại</th>
+          <th>Tên loại sản phẩm</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ur of list_loaisanphams">
+          <td>{{ur.MaLoaiSanPham}}</td>
+          <td>{{ur.TenLoaiSanPham}}</td>
+          <td class="text-center">
+            <ul class="icons-list">
+				<a (click)="opendetailSP(ur.MaLoaiSanPham)" ><i class="fa fa-info-circle" ></i><span></span></a>
+				<a (click)="openUpdateModal(ur.MaLoaiSanPham)" ><i class="fa fa-edit" ></i><span></span></a>
+				<a (click)="onRemove(ur.MaLoaiSanPham)"><i class="fa fa-trash" ></i><span></span></a>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls> -->
+  </div>
+
+  <!-- /basic datatable -->
+  <!-- Footer -->
+  <div class="footer text-muted">
+    &copy; 2015. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov"
+      target="_blank">Eugene Kopyov</a>
+  </div>
+  <!-- /footer -->
+
+</div>
+<!-- /content area -->
+
+
+<div *ngIf="showUpdateModal" class="modal fade" id="createSanPhamModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5 class="modal-title"></h5>
+			</div>
+			<hr>
+			<form *ngIf="doneSetupForm"  [formGroup]="frmLoaiSanPham" (ngSubmit)="OnSubmit(frmLoaiSanPham.value)"
+				class="form-horizontal">
+				<div class="modal-body" style="padding-left: 50px !important; padding-right:50px !important;">
+					<div class="form-group">
+						<label class="col-lg-3 control-label">Tên loại sản phẩm<span style="color:red ;">*</span></label>
+						<div class="col-lg-9">
+							<input formControlName="txt_tenlsp" type="text" class="form-control" placeholder="Tên sản phẩm">
+							<div *ngIf="tenlsp.invalid && (tenlsp.dirty || tenlsp.touched)">
+								<div *ngIf="tenlsp.errors?.['required']" style="color:red ;">Tên không được rỗng</div>
+								<div *ngIf="tenlsp.errors?.['minlength']" style="color:red ;">
+									Tên loại không được nhỏ hơn 3 ký tự
+								</div>
+								<div *ngIf="tenlsp.errors?.['maxlength']" style="color:red ;">
+									Tên loại không được lớn hơn 250 ký tự
+								</div>
+							</div>
+						</div>
+					</div>
+        </div>
+				<hr>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link" (click)="closeModal()">Đóng</button>
+					<button type="submit" class="btn btn-primary" [disabled]="frmLoaiSanPham.invalid">Lưu lại</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
