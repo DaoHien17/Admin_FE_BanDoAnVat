@@ -29,7 +29,15 @@ import { NhacungcapComponent } from './nhacungcap/nhacungcap.component';
         path: 'sanpham',
         component: SanphamComponent,
       },
-  ]),  
+      {
+        path: 'loaisp',
+        component: LoaispComponent,
+      },
+      {
+        path: 'ncc',
+        component: NhacungcapComponent,
+      },
+  ]),
   ]
 })
 export class ProductModule { }
