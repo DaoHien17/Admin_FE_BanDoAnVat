@@ -8,7 +8,9 @@
 
     <div class="heading-elements">
       <div class="heading-btn-group">
-        <a (click)="createModal()" class="btn btn-link btn-float has-text"><i class="fa fa-plus" ></i><span>Thêm sản phẩm</span></a>
+        <a (click)="createModal()" class="btn btn-link btn-float has-text"><button class='btn btn-warning'> <i class="fa fa-plus" ></i>Thêm mới</button></a>
+        <!-- <a (click)="createModal()" class="btn btn-link btn-float has-text"><i class="fa fa-plus" ></i><span>Thêm sản phẩm</span></a> -->
+        <!-- <a href="{{route('/admin/sanpham/create')}}" ><button class='btn btn-warning'> Thêm mới</button></a> -->
       </div>
     </div>
   </div>
@@ -23,9 +25,9 @@
       <form  class="form-horizontal" (ngSubmit)="LoadData()" [formGroup]="frmSearch" >
         <div class="panel panel-flat">
           <div class="panel-heading" style="display: flex;">
-            <h5 class="panel-title" style="padding-left: 15px;
-			padding-right: 15px; padding-top: 10px;">Tìm kiếm</h5>
-			<input formControlName="txt_tensp" type="text" class="form-control" placeholder="Search....">
+            <h5 class="panel-title" style="padding-left: 15px;padding-right: 15px; padding-top: 10px;">Tìm kiếm</h5>
+			      <input formControlName="txt_tensp" type="text" class="form-control" placeholder="Search....">
+      <!-- <input type="text" placeholder="Tìm kiếm ..." name="search_prod" ng-model="searchName"> -->
           </div>
 
 
