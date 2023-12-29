@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiService } from '../services/api.service';
- 
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private userSubject: BehaviorSubject<any>;
@@ -22,8 +22,8 @@ export class AuthenticationService {
     }
 
     public get userValue(): User {
-        return this.userSubject.value && this.userSubject.value.taiKhoan ? this.userSubject.value: null;
-       
+        return this.userSubject.value && this.userSubject.value.TaiKhoan ? this.userSubject.value: null;
+
     }
 
 

@@ -55,9 +55,9 @@ export class LoginComponent implements OnInit {
         username: vl.txt_taikhoan,
         password: vl.txt_matkhau,
       }).then(res => {
-        localStorage.setItem('user', JSON.stringify(res.data));
+        localStorage.setItem('user', JSON.stringify(res.data[0]));
         alert('Logging...');
-        window.open("http://localhost:4200/sanpham");
+        window.open("http://localhost:4201");
       }).catch(err => alert('Sai tk, mk'));
     }
 }
