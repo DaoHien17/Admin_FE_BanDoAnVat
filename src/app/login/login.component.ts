@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       }).then(res => {
         localStorage.setItem('user', JSON.stringify(res.data[0]));
         alert('Logging...');
-        window.open("http://localhost:4201");
+        window.location.replace("http://localhost:4201");
       }).catch(err => alert('Sai tk, mk'));
     }
 }

@@ -11,5 +11,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  logout(){
+    localStorage.removeItem('user');
+  }
 }
