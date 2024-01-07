@@ -53,7 +53,7 @@
           <td>{{ur.DiaChi}}</td>
           <td>{{ur.SoDienThoai}}</td>
           <td>{{ur.Email}}</td>
-          <td>{{ur.TongTien}}</td>
+          <td>{{ur.TongTien | number}} </td>
           <td class="text-center">
             <ul class="icons-list">
 				    <a (click)="opendetailSP(ur.MaThanhToan)" ><i class="fa fa-info-circle" ></i><span></span></a>
@@ -100,7 +100,7 @@
             <td>{{ur.TenSP}}</td>
             <td><img width="100" src="{{ ur.AnhDaiDien }}"></td>
             <td>{{ur.SoLuong}}</td>
-            <td>{{ur.GiaMua}}</td>
+            <td>{{ur.GiaMua | number}}</td>
           </tr>
         </tbody>
       </table>
